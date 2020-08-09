@@ -1,0 +1,50 @@
+import java.util.*; 
+import java.io.*;
+
+class Main {
+
+  public static String LongestWord(String sen) {
+    // code goes here  
+    int length = sen.length();
+    int i=0;
+    int count =0;
+    int max=0;
+    String[] words = sen.split(" ");
+    char[] ch = sen.toCharArray(); 
+    String res="";
+
+    for(i=0; i<length; i++)
+    {
+      if(Character.isLetter(ch[i]) == true && ch[i] != ' ')
+      {
+        count++; 
+      }
+      else if(max<count)
+      {
+        max =  count; 
+        count=0;
+      }
+    }
+    if(max<count)
+    {
+      max=count;
+    }
+    
+    for(String word : words)
+    {
+      if(word.length() == max)
+      {
+      res= word;
+      break;
+      }
+    }   
+    return res;
+  }
+
+  public static void main (String[] args) {  
+    // keep this function call here     
+    Scanner s = new Scanner(System.in);
+    System.out.print(LongestWord(s.nextLine())); 
+  }
+
+}
